@@ -22,5 +22,7 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		templates.ExecuteTemplate(w, "index.html", artists)
+	} else {
+		http.Error(w, "Invalid request method.", http.StatusMethodNotAllowed)
 	}
 }
