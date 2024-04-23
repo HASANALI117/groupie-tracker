@@ -14,6 +14,8 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// panic("Simulated panic")  // Uncomment this line to simulate a panic
+
 	if r.Method == "GET" {
 		var artists []models.Artist
 		err := fetchData("artists", &artists)

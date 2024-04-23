@@ -20,6 +20,8 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	//panic("Simulated panic") // Uncomment this line to simulate a panic
+	
 	var artist models.Artist
 	err = fetchData(fmt.Sprintf("artists/%d", artistID), &artist)
 	if err != nil {
