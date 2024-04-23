@@ -6,7 +6,7 @@ import (
 	"text/template"
 )
 
-var templates = template.Must(template.ParseGlob("web/*.html"))
+var templates = template.Must(template.ParseGlob("web/templates/*.html"))
 
 func MainHandler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
@@ -14,13 +14,16 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if r.Method == "GET" {
-		var artists []models.Artist
-		err := fetchData("artists", &artists)
-		if err != nil {
-			http.Error(w, "Error fetching artists", http.StatusInternalServerError)
-			return
-		}
-		templates.ExecuteTemplate(w, "index.html", artists)
+	if r.Method != "GET" {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
 	}
+
+	var artists []models.Artist
+	err := fetchData("artists", &artists)
+	if err != nil {
+		http.Error(w, "Error fetching artists", http.StatusInternalServerError)
+		return
+	}
+	templates.ExecuteTemplate(w, "index.html", artists)
 }
