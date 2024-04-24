@@ -1,0 +1,60 @@
+{{define "header"}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <!-- CSS Sheet -->
+    <link rel="stylesheet" href="/web/static/styles.css" />
+    <title>Groupie Tracker</title>
+  </head>
+  <body>
+    <nav class="p-2 mt-0 w-full">
+      <div class="container mx-auto flex flex-wrap items-center">
+        <div
+          class="flex w-full md:w-1/2 justify-center md:justify-start text-white font-extrabold"
+        >
+          <a
+            class="text-white no-underline hover:text-white hover:no-underline flex items-center"
+            href="/"
+          >
+            <img
+              src="/web/static/img/mic.png"
+              alt="mic"
+              class="w-8 h-10 mr-2 filter invert"
+            />
+            <span class="text-2xl pl-2">Groupie Tracker</span>
+          </a>
+        </div>
+        <div
+          class="flex w-full pt-2 content-center justify-between md:w-1/2 md:justify-end"
+        >
+          <form class="flex w-full md:w-auto" action="/search" method="GET">
+            <input
+              class="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
+              name="query"
+              type="text"
+              placeholder="Search"
+            />
+            <button
+              class="px-8 rounded-r-lg text-white font-bold p-4 uppercase border-blue-500 border-t border-b border-r"
+            >
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    {{end}}
+  </body>
+</html>
