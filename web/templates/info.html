@@ -1,6 +1,6 @@
 {{template "header"}}
 
-<div class="flex justify-center items-center min-h-screen m-0 pb-32">
+<div class="flex-grow flex justify-center items-center h-full">
   <div class="inline-block rounded-lg overflow-hidden shadow-lg">
     <img
       class="artist-image object-cover object-center"
@@ -12,7 +12,7 @@
     <h1 class="font-bold text-xl mb-2">{{.Name}}</h1>
     <p>Members: {{range .Members}}{{.}}, {{end}}</p>
     <p>Creation Date: {{.CreationDate}}</p>
-    <p>First Album: {{.FirstAlbum}}</p>
+    <p>First Album: {{.FirstAlbum}}</p>z
     <p>Locations: {{.Locations}}</p>
     <p>Concert Dates: {{.ConcertDates}}</p>
     <p>Relations: {{.Relations}}</p>

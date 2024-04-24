@@ -2,11 +2,12 @@ package handlers
 
 import (
 	"fmt"
-	"groupie-tracker/pkg/models"
 	"log"
 	"net/http"
 	"path"
 	"strconv"
+
+	"groupie-tracker/pkg/models"
 )
 
 func ArtistHandler(w http.ResponseWriter, r *http.Request) {
@@ -20,13 +21,17 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//panic("Simulated panic") // Uncomment this line to simulate a panic
-	
+	// panic("Simulated panic") // Uncomment this line to simulate a panic
+
 	var artist models.Artist
 	err = fetchData(fmt.Sprintf("artists/%d", artistID), &artist)
 	if err != nil {
 		log.Printf("Error fetching artist: %v", err) // Log the error
 		http.Error(w, "Artist not found", http.StatusNotFound)
+		return
+	}
+	if artist.ID == 0 {
+		errors.notFound("Artist Not Found")
 		return
 	}
 	templates.ExecuteTemplate(w, "info.html", artist)
