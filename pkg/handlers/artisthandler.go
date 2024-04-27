@@ -31,7 +31,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if artist.ID == 0 {
-		errors.notFound("Artist Not Found")
+		ErrorHandler(w, "Artist Not Found")
 		return
 	}
 	templates.ExecuteTemplate(w, "info.html", artist)

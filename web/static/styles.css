@@ -1,27 +1,57 @@
 body {
-  background-color: #1b1a55;
+  background-color: #704264;
 }
 /* .container {
   margin: 0;
   padding: 0;
 } */
 
+h1 {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-weight: 400;
+  line-height: 3.5rem;
+}
+
+h3 {
+  font-family: "Montserrat", sans-serif;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.index-image {
+  height: 20rem;
+  width: 26rem;
+}
+
+.text-box-cover {
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5));
+}
+
 .artist-image {
   height: 25rem;
   width: 35rem;
 }
 .textBox {
-  background-color: #535c91;
+  background-color: #662549;
 }
 
 span {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Lobster", sans-serif;
 }
 
 nav {
-  background-color: #070f2b;
+  background-color: #49243e;
 }
 
-button {
-  background-color: #9290c3;
+.search-button {
+  background-color: #49243e;
+}
+
+.filter-button {
+  background-color: #bb8493;
 }

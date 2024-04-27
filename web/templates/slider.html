@@ -1,0 +1,47 @@
+{{define "slider"}}
+
+<div class="swiper-container mt-16 overflow-hidden">
+  <div class="swiper-wrapper">
+    <!-- Loop through each item in the data array -->
+    {{range .}}
+    <div class="swiper-slide flex flex-col m-4">
+      <div class="inline-block relative text-white overflow-hidden m-2">
+        <a href="/artist/{{.ID}}">
+          <img
+            class="index-image object-cover object-center rounded-2xl"
+            src="{{.Image}}"
+            alt="image"
+          />
+          <!-- Overlay with artist name -->
+          <div
+            class="rounded-2xl text-box-cover absolute inset-0 transition-opacity duration-200 flex items-end justify-center text-center opacity-100 p-6 w-full"
+          >
+            <div>
+              <h2 class="font-bold text-xl mb-2">{{.Name}}</h2>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    {{end}}
+  </div>
+</div>
+
+<!-- Initialize Swiper when the document is ready -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var swiper = new Swiper(".swiper-container", {
+      slidesPerView: 7,
+      spaceBetween: 30,
+      loop: true,
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+      },
+      effect: "slide",
+      speed: 2000,
+    });
+  });
+</script>
+
+{{end}}
