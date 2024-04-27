@@ -11,7 +11,7 @@ var templates = template.Must(template.ParseGlob("web/templates/*.html"))
 
 func MainHandler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
-		http.Error(w, "404 not found.", http.StatusNotFound)
+		ErrorHandler(w, "Page Not Found")
 		return
 	}
 

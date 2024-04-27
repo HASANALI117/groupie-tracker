@@ -29,7 +29,7 @@ h3 {
 }
 
 .text-box-cover {
-  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5));
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.6));
 }
 
 .artist-image {
@@ -54,4 +54,7 @@ nav {
 
 .filter-button {
   background-color: #bb8493;
+}
+.filter-button:hover {
+  background-color: #dbafa0;
 }
