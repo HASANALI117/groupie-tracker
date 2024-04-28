@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 )
 
@@ -31,4 +32,14 @@ func fetchData(urlPath string, data interface{}) error {
 		return err
 	}
 	return nil
+}
+
+func fetchAndHandleData(path string, data interface{}, errorMsg string, w http.ResponseWriter) error {
+    err := fetchData(path, data)
+    if err != nil {
+        log.Printf("Error fetching %s: %v", errorMsg, err) // Log the error
+        InternalServerError(w, fmt.Sprintf("Error fetching %s", errorMsg))
+        return err
+    }
+    return nil
 }

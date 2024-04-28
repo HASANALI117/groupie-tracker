@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"path"
 	"strconv"
@@ -25,16 +24,36 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	// panic("Simulated panic") // Uncomment this line to simulate a panic
 
 	var artist models.Artist
-	err = fetchData(fmt.Sprintf("artists/%d", artistID), &artist)
-	if err != nil {
-		log.Printf("Error fetching artist: %v", err) // Log the error
-		// http.Error(w, "Artist not found", http.StatusNotFound)
-		InternalServerError(w, "Error fetching artist")
-		return
+	var dates models.Dates
+	var locations models.Locations
+	var relation models.Relation
+
+	fetchInfos := []models.FetchInfo{
+		{Path: fmt.Sprintf("artists/%d", artistID), Data: &artist, ErrorMsg: "artist"},
+		{Path: fmt.Sprintf("dates/%d", artistID), Data: &dates, ErrorMsg: "date"},
+		{Path: fmt.Sprintf("locations/%d", artistID), Data: &locations, ErrorMsg: "location"},
+		{Path: fmt.Sprintf("relation/%d", artistID), Data: &relation, ErrorMsg: "relation"},
 	}
-	if artist.ID == 0 {
-		NotFoundError(w, "Artist Not Found")
-		return
+
+	for _, info := range fetchInfos {
+		if fetchAndHandleData(info.Path, info.Data, info.ErrorMsg, w) != nil {
+			return
+		}
+
+		// Check if artist is found
+		if info.ErrorMsg == "artist" && info.Data.(*models.Artist).ID == 0 {
+			NotFoundError(w, "Artist Not Found")
+			return
+		}
 	}
-	templates.ExecuteTemplate(w, "info.html", artist)
+
+	data := models.InfoTemplateData{
+		Artist:    artist,
+		Dates:     dates,
+		Locations: locations,
+		Relation:  relation,
+	}
+
+	templates.ExecuteTemplate(w, "info.html", data)
+
 }

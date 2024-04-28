@@ -27,3 +27,16 @@ type Relation struct {
 	ID             int                 `json:"id"`
 	DatesLocations map[string][]string `json:"datesLocations"`
 }
+
+type FetchInfo struct {
+    Path      string
+    Data      interface{}
+    ErrorMsg  string
+}
+
+type InfoTemplateData struct {
+	Artist    Artist
+	Dates     Dates
+	Locations Locations
+	Relation  Relation
+}
