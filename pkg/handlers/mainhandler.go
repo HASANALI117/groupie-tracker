@@ -11,7 +11,7 @@ var templates = template.Must(template.ParseGlob("web/templates/*.html"))
 
 func MainHandler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
-		ErrorHandler(w, "Page Not Found")
+		NotFoundError(w, "Page Not Found")
 		return
 	}
 
@@ -23,7 +23,8 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 	var artists []models.Artist
 	err := fetchData("artists", &artists)
 	if err != nil {
-		http.Error(w, "Error fetching artists", http.StatusInternalServerError)
+		// http.Error(w, "Error fetching artists", http.StatusInternalServerError)
+		InternalServerError(w, "Error fetching artists")
 		return
 	}
 	templates.ExecuteTemplate(w, "index.html", artists)
