@@ -1,39 +1,118 @@
 {{template "header"}}
 
-<div class="flex-grow flex justify-center items-center h-full">
-  <div class="inline-block rounded-lg overflow-hidden shadow-lg">
+<div
+  class="flex flex-col items-center justify-center min-h-screen text-white relative"
+>
+  <!-- Display the artist's name -->
+  <h1 class="text-5xl font-bold my-4">{{.Artist.Name}}</h1>
+
+  <!-- Display the artist's image -->
+  <div class="w-64 h-64 mb-4">
     <img
-      class="artist-image object-cover object-center"
+      class="w-full h-full object-cover rounded-full"
       src="{{.Artist.Image}}"
-      alt="image"
+      alt="{{.Artist.Name}}"
     />
   </div>
-  <div class="artist-image px-6 py-4 text-center text-white textBox">
-    <h2 class="font-bold text-xl mb-2">{{.Artist.Name}}</h2>
+
+  <!-- Display the artist's details -->
+  <div class="text-center mb-4">
     <p>Members: {{range .Artist.Members}}{{.}}, {{end}}</p>
     <p>Creation Date: {{.Artist.CreationDate}}</p>
     <p>First Album: {{.Artist.FirstAlbum}}</p>
+  </div>
+
+  <!-- Locations and Concert Dates buttons -->
+  <div class="flex space-x-4 mb-4">
+    <button
+      id="locations-button"
+      class="px-4 py-2 filter-button rounded-2xl text-white font-bold"
+    >
+      Locations
+    </button>
+    <button
+      id="concert-dates-button"
+      class="px-4 py-2 filter-button rounded-2xl text-white font-bold"
+    >
+      Concert Dates
+    </button>
+  </div>
+
+  <!-- Locations div, hidden by default -->
+  <div
+    id="locations-div"
+    class="hidden absolute text-white textBox p-4 rounded-lg shadow-lg left-56"
+  >
+    <h3 class="font-bold mb-2">Locations:</h3>
     <ul>
-      Locations: {{range .Locations.Locations}}
-      <li>{{.}}</li>
-      {{end}}
-    </ul>
-    <ul>
-      Concert Dates: {{range .Dates.Dates}}
-      <li>{{.}}</li>
-      {{end}}
-    </ul>
-    <ul>
-      Relations: {{range $key, $value := .Relation.DatesLocations}}
+      {{range .Locations.Locations}}
       <li>
-        {{$key}}:
-        <ul>
-          {{range $value}}
-          <li>{{.}}</li>
-          {{end}}
-        </ul>
+        <i class="mr-4 fas fa-map-marker-alt" style="color: #ffffff"></i> {{.}}
       </li>
       {{end}}
     </ul>
   </div>
+
+  <!-- Concert Dates div, hidden by default -->
+  <div
+    id="concert-dates-div"
+    class="hidden absolute text-white textBox p-4 rounded-lg shadow-lg right-56"
+  >
+    <h3 class="font-bold mb-2">Concert Dates:</h3>
+    <ul>
+      {{range .Dates.Dates}}
+      <li><i class="fas fa-calendar" style="color: #ffffff"></i> {{.}}</li>
+      {{end}}
+    </ul>
+  </div>
+
+  <!-- Display the artist's relations -->
+  <div
+    class="p-4 rounded-lg shadow-lg artist-image textBox text-white m-4 overflow-auto"
+  >
+    <table class="w-full">
+      <thead>
+        <tr>
+          <th class="border px-4 py-2">
+            <i class="mr-4 fas fa-map-marker-alt" style="color: #ffffff"></i>
+            Locations
+          </th>
+          <th class="border px-4 py-2">
+            <i class="fas fa-calendar" style="color: #ffffff"></i> Dates
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range $key, $value := .Relation.DatesLocations}}
+        <tr>
+          <td class="border px-4 py-2">{{$key}}:</td>
+          <td class="border px-4 py-2">
+            <ul>
+              {{range $value}}
+              <li>{{.}}</li>
+              {{end}}
+            </ul>
+          </td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
 </div>
+
+<!-- JavaScript to toggle visibility of Locations and Concert Dates divs -->
+<script>
+  document
+    .getElementById("locations-button")
+    .addEventListener("click", function () {
+      var locationsDiv = document.getElementById("locations-div");
+      locationsDiv.classList.toggle("hidden");
+    });
+
+  document
+    .getElementById("concert-dates-button")
+    .addEventListener("click", function () {
+      var concertDatesDiv = document.getElementById("concert-dates-div");
+      concertDatesDiv.classList.toggle("hidden");
+    });
+</script>
