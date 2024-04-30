@@ -19,3 +19,5 @@ go.work
 
 # Go project setup script
 go_project_setup.sh
+
+.vscode/
