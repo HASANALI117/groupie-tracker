@@ -32,9 +32,12 @@ h3 {
   background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.6));
 }
 
-.artist-image {
-  height: 25rem;
+.artist-relations {
+  max-height: 25rem;
   width: 35rem;
+}
+.members {
+  max-width: 35rem;
 }
 .textBox {
   background-color: #662549;
@@ -57,4 +60,11 @@ nav {
 }
 .filter-button:hover {
   background-color: #dbafa0;
+}
+
+@media (max-width: 640px) {
+  .artist-relations {
+    width: 100%;
+    margin: 1rem;
+  }
 }

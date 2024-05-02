@@ -16,10 +16,18 @@
   </div>
 
   <!-- Display the artist's details -->
-  <div class="text-center mb-4">
-    <p>Members: {{range .Artist.Members}}{{.}}, {{end}}</p>
-    <p>Creation Date: {{.Artist.CreationDate}}</p>
-    <p>First Album: {{.Artist.FirstAlbum}}</p>
+  <div class="text-center mb-4 members">
+    <p>
+      <span class="font-bold text-lg">Members: </span>{{range
+      .Artist.Members}}{{.}}, {{end}}
+    </p>
+    <p>
+      <span class="font-bold text-lg">Creation Date: </span
+      >{{.Artist.CreationDate}}
+    </p>
+    <p>
+      <span class="font-bold text-lg">First Album: </span>{{.Artist.FirstAlbum}}
+    </p>
   </div>
 
   <!-- Locations and Concert Dates buttons -->
@@ -71,7 +79,7 @@
 
   <!-- Display the artist's relations -->
   <div
-    class="p-4 rounded-lg shadow-lg artist-image textBox text-white m-4 overflow-auto"
+    class="p-4 rounded-lg shadow-lg artist-relations textBox text-white m-4 overflow-auto"
   >
     <table class="w-full">
       <thead>
