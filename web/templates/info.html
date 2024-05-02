@@ -38,32 +38,35 @@
     </button>
   </div>
 
-  <!-- Locations div, hidden by default -->
-  <div
-    id="locations-div"
-    class="hidden absolute text-white textBox p-4 rounded-lg shadow-lg left-56"
-  >
-    <h3 class="font-bold mb-2">Locations:</h3>
-    <ul>
-      {{range .Locations.Locations}}
-      <li>
-        <i class="mr-4 fas fa-map-marker-alt" style="color: #ffffff"></i> {{.}}
-      </li>
-      {{end}}
-    </ul>
-  </div>
+  <div class="flex justify-center w-full">
+    <!-- Locations div, hidden by default -->
+    <div
+      id="locations-div"
+      class="hidden 2xl:absolute text-white textBox p-4 rounded-lg shadow-lg left-56 m-4"
+    >
+      <h3 class="font-bold mb-2">Locations:</h3>
+      <ul>
+        {{range .Locations.Locations}}
+        <li>
+          <i class="mr-4 fas fa-map-marker-alt" style="color: #ffffff"></i>
+          {{.}}
+        </li>
+        {{end}}
+      </ul>
+    </div>
 
-  <!-- Concert Dates div, hidden by default -->
-  <div
-    id="concert-dates-div"
-    class="hidden absolute text-white textBox p-4 rounded-lg shadow-lg right-56"
-  >
-    <h3 class="font-bold mb-2">Concert Dates:</h3>
-    <ul>
-      {{range .Dates.Dates}}
-      <li><i class="fas fa-calendar" style="color: #ffffff"></i> {{.}}</li>
-      {{end}}
-    </ul>
+    <!-- Concert Dates div, hidden by default -->
+    <div
+      id="concert-dates-div"
+      class="hidden 2xl:absolute text-white textBox p-4 rounded-lg shadow-lg right-56 m-4"
+    >
+      <h3 class="font-bold mb-2">Concert Dates:</h3>
+      <ul>
+        {{range .Dates.Dates}}
+        <li><i class="fas fa-calendar" style="color: #ffffff"></i> {{.}}</li>
+        {{end}}
+      </ul>
+    </div>
   </div>
 
   <!-- Display the artist's relations -->
