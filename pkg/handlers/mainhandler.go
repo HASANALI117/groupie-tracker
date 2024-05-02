@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"log"
 	"net/http"
 	"text/template"
 
@@ -27,5 +28,10 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 		InternalServerError(w, "Error fetching artists")
 		return
 	}
-	templates.ExecuteTemplate(w, "index.html", artists)
+	err = templates.ExecuteTemplate(w, "index.html", artists)
+	if err != nil {
+		InternalServerError(w, "Error executing template")
+		log.Println(err)
+		return
+	}
 }
