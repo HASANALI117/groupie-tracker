@@ -25,5 +25,8 @@
   <h3 class="text-4xl">Discover Your Next Favorite Artist</h3>
 </div>
 
-<!-- Artist cards section -->
-{{template "card" .}}
+<div class="flex flex-wrap justify-center mt-16">
+  {{range .}}
+  <!-- Artist cards section -->
+  {{template "card" .}} {{end}}
+</div>
