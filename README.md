@@ -10,7 +10,7 @@ Groupie Tracker is a web application that provides information about various mus
 ## Project Structure
 
 The project is structured into several packages:
-
+- `cmd`: contains application executables.
 - `models`: Contains the data structures used in the project, such as `Artist`, `Locations`, `Dates`, and `Relation`.
 - `handlers`: Contains the HTTP handlers that handle requests to various endpoints.
 - `middleware`: Contains the middleware functions used to add functionality to the HTTP handlers.
