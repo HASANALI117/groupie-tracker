@@ -18,6 +18,10 @@ type Locations struct {
 	Dates     string   `json:"dates"`
 }
 
+type AllLocations struct {
+	Index []Locations `json:"index"`
+}
+
 type Dates struct {
 	ID    int      `json:"id"`
 	Dates []string `json:"dates"`
@@ -29,9 +33,9 @@ type Relation struct {
 }
 
 type FetchInfo struct {
-    Path      string
-    Data      interface{}
-    ErrorMsg  string
+	Path     string
+	Data     interface{}
+	ErrorMsg string
 }
 
 type InfoTemplateData struct {
